@@ -9,6 +9,7 @@ public class MyArrayList<T> {
     }
 
     public boolean add(String element) {
+        makeNewDataIfNotEnough();
         data[size] = element;
         size++;
         return true;
@@ -16,6 +17,26 @@ public class MyArrayList<T> {
 
     public String get(int index) {
         return data[index];
+    }
+
+    private void makeNewDataIfNotEnough() {
+        if(ifNotEnough()){
+            makeNewData();
+        }
+    }
+
+    private void makeNewData() {
+        String[] newData = new String[data.length * 2];
+
+        for(int i=0; i<data.length; i++){
+            newData[i] = data[i];
+        }
+
+        data = newData;
+    }
+
+    private boolean ifNotEnough() {
+        return size >= data.length;
     }
 
 }
